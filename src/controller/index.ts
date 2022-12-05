@@ -1,6 +1,7 @@
 import { RoboStatistics } from "../model";
 import { User } from "../model/user_model";
 import { Request, Response } from "express";
+// @ts-ignore
 import bcrypt from 'bcryptjs'
 export const insertData=async(req:Request, res:Response)=>{
     try {
