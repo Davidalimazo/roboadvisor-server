@@ -144,9 +144,13 @@ export const insertData=async(req:Request, res:Response)=>{
     }
     
 }
+export const home=async(req:Request, res:Response)=>{
+    const riskScore = req.params.riskScore;
+  res.status(200).send('<div><p>Here are the endpoints available</p><ul><li>GET: /?riskScore={number}</li><li>POST: /register</li></ul></div>')
+}
 export const findRiskScore=async(req:Request, res:Response)=>{
     const riskScore = req.params.riskScore;
-    console.log(riskScore)
+
     try {
         const data = await RoboStatistics.findOne({riskScore});
         res.status(200).json(data)
@@ -159,7 +163,7 @@ export const registerUser=async(req:Request, res:Response)=>{
   const {name, duration, goal, amount, riskScore, email, password} = req.body;
   var salt = bcrypt.genSaltSync(10);
   var hash = bcrypt.hashSync(password, salt);
-  console.log(name, duration, goal, amount, riskScore, email, password)
+
   if(name && duration && goal && amount && riskScore && email && password){
     try {
       const newUser =new User({name, duration, goal, amount, riskScore, email, password:hash});
